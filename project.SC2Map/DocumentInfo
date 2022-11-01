@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DocInfo>
+    <ModType>
+        <Value>Interface</Value>
+    </ModType>
+    <Dependencies>
+        <Value>bnet:자유의 날개 (모드)/0.0/999,file:Mods/Liberty.SC2Mod</Value>
+    </Dependencies>
+</DocInfo>

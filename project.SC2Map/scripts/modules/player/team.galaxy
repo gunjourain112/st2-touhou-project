@@ -1,0 +1,5 @@
+
+struct Team {
+    int id;
+    int[PLAYERS_MAX / 2] playerId;
+};

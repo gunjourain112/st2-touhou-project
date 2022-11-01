@@ -1,0 +1,8 @@
+
+struct MatchRound {
+    int winnerTeam;
+    int playSecond;
+    KDA[PLAYERS_MAX + 1] playerKda;
+};
+
+

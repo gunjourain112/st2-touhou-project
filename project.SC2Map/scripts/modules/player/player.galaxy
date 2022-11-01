@@ -1,0 +1,14 @@
+include "scripts/modules/player/profile.galaxy"
+include "scripts/modules/hero/hero.galaxy"
+
+struct Player {
+    int teamId;
+    int teamIndex;
+    Profile profile;
+    Hero hero; 
+};
+Player[PLAYERS_MAX] players;
+
+void playerInit(structref<Player> player) {
+    //
+}

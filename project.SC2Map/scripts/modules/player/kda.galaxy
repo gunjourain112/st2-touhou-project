@@ -1,0 +1,8 @@
+
+struct KDA {
+    int kill;
+    int death;
+    int assist;
+    string msg;
+};
+

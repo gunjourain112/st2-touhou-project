@@ -1,0 +1,30 @@
+
+struct ModSelection {
+    int gameModStep;
+
+    int gameType;
+    int teamType;
+    int goalRound;
+
+    int[MOD_SELECTION_DIALOG_BOX_MAX] dialogBoxes;
+    int[CHARACTER_MAX] dialogBoxButtonItems;
+    int[CHARACTER_MAX] dialogBoxSub1Items;
+    int[CHARACTER_MAX] dialogBoxSub2Items;
+};
+
+ModSelection modSelection;
+
+void runNextModSelection() {
+    modSelection.gameModStep = GAME_MOD_STEP__01_GAME_TYPE;
+}
+
+const int GAME_MOD_STEP__01_GAME_TYPE = 0;
+const int GAME_MOD_STEP__02_TEAM_TYPE = 1;
+const int GAME_MOD_STEP__03_TEAM_CHOICE = 2;
+const int GAME_MOD_STEP__04_GOAL_ROUND = 3;
+const int GAME_MOD_STEP__05_HERO_PICK = 4;
+const int GAME_MOD_STEP__06_HERO_PICK_BAN = 5;
+const int GAME_MOD_STEP__07_SWAP = 6;
+const int GAME_MOD_STEP__08_SUB_STATS_CHOICE = 7;
+const int GAME_MOD_STEP__09_PICK_OPEN_TIME = 8;
+const int GAME_MOD_STEP__10_SELECTION_END = 9;

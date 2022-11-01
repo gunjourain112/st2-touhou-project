@@ -1,0 +1,20 @@
+
+struct AbilityStats {
+    string dataId;
+    int tab;
+    int field;
+    int detail;
+    fixed base;
+    fixed incr;
+    fixed cumulativeOriginalValue;
+    fixed cumulativeCalculatedValue;
+};
+
+AbilityStats s;
+s.dataId = "";
+s.field = ABILITY_UPGRADE_TYPE__EFFECT_AMOUNT;
+s.detail = ABILITY_UPGRADE_DETAIL_TYPE__BONUS;
+s.base = 0;
+s.incr = 0;
+s.cumulativeOriginalValue = 0;
+s.cumulativeCalculatedValue = 0;

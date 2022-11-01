@@ -1,0 +1,7 @@
+
+struct AbilityUpgrade {
+    int upgradeType;
+    int upgradeDetailType;
+    string dataId;
+};
+

@@ -1,0 +1,5 @@
+﻿CustomScript/Name/E14339CA=main
+FunctionDef/Name/C9E6FA8F=action
+ParamDef/Name/C35A515B=params
+Trigger/Name/D365A40D=init
+Variable/Name/3BB372AC=제목 없는 변수 001

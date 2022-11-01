@@ -1,0 +1,5 @@
+struct Match {
+    int goalRound;
+    MatchRound[MATCH_ROUND_MAX + 1] round;
+};
+

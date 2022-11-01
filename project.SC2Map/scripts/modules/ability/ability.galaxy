@@ -1,0 +1,127 @@
+
+include "scripts/modules/ability/ability_learn.galaxy"
+include "scripts/modules/ability/ability_stats.galaxy"
+
+struct Ability {
+    string dataId;
+    int hotkey;
+    int line;
+    int tier;
+    int level;
+
+    AbilityLearn[ABILITY_LEARN_ARRAY_MAX] abilityLearn;
+    AbilityStats[ABILITY_STATS_ARRAY_MAX] abilityStats;
+};
+
+void abilityInitialize(int player);
+
+void AbilityLevelup(int player, int hotkey);
+
+void AbilityStatsUp(int player, int statIndex, fixed value);
+
+void abilityUpgradeExcuteFunc(int player, int hotkey, int upgradeType, string dataId, fixed value);
+
+void testCode();
+
+
+
+void abilityInitialize(int player) {
+    //structref<Ability> ability = players[player].hero.abilities[hotkey];
+    int i;
+
+    for (i = 0; i < ABILITY_LEARN_ARRAY_MAX; i = i + 1) {
+        // players[player].hero.abilities[i].learnEvent = abilityLearnEventFunc;
+        // players[player].hero.abilities[i].statsEvent = abilityStatsEventFunc;
+        // players[player].hero.abilities[i].upgradeExcute = abilityUpgradeExcuteFunc;
+    }
+}
+
+void AbilityLevelup(int player, int hotkey) {
+    structref<Ability> ability = players[player].hero.abilities[hotkey];
+    structref<AbilityLearn> learn;
+    int i;
+
+    for (i = 0; i < ABILITY_LEARN_ARRAY_MAX; i = i + 1) {
+        learn = ability.abilityLearn[i];
+        if (learn.dataId == "") {
+            continue;
+        }
+        abilityUpgradeExcuteFunc(player, hotkey, learn.tab, learn.dataId, learn.field);
+    }
+}
+
+void AbilityStatsUp(int player, int statIndex, fixed value) {
+    structref<Ability> ability;
+    structref<AbilityStats> stats;
+    fixed step;
+    fixed coefficient;
+    fixed resultValue;
+    fixed nonAddedValue;
+
+    int hotkey;
+    int i;
+
+    for (hotkey = 0; hotkey < ABILITY_HOTKEY_MAX; hotkey = hotkey + 1) {
+        ability = players[player].hero.abilities[hotkey];
+
+        for (i = 0; i < ABILITY_LEARN_ARRAY_MAX; i = i + 1) {
+            stats = ability.abilityStats[i];
+
+            if (stats.dataId == "") {
+                continue;
+            }
+            if (stats.statIndex != statIndex) {
+                continue;
+            }
+
+            if (stats.step == 0.0) {
+                resultValue = value * (stats.begin * 0.01);
+            } else {
+                if (ability.level == 0) {
+                    step = 0;
+                } else {
+                    step = stats.step * (ability.level - 1);
+                }
+                coefficient = (stats.begin + step) * 0.01;
+
+                nonAddedValue = (stats.cumulativeOriginalValue * coefficient) - stats.cumulativeCalculatedValue;
+                resultValue = (value * coefficient) + nonAddedValue;
+            }
+
+            stats.cumulativeOriginalValue += value;
+            stats.cumulativeCalculatedValue += resultValue;
+
+            abilityUpgradeExcuteFunc(player, hotkey, stats.upgradeType, stats.dataId, resultValue);
+        }
+    }
+}
+
+void abilityUpgradeExcuteFunc(int player, int hotkey, int upgradeType, string dataId, fixed value) {
+    structref<Ability> ab = players[player].hero.abilities[0];
+    structref<Ability> ability = players[player].hero.abilities[hotkey];
+    string fieldPath;
+    int learnType;
+    
+    if (learnType == ABILITY_LEARN_TYPE__BEHAVIOR_DURATION) {
+        fieldPath = "CmdButtonArray[" + IntToString(0) + "].Requirements";
+    } else if (learnType == ABILITY_LEARN_TYPE__ABILITY_MANA) {
+        fieldPath = "CmdButtonArray[" + IntToString(0) + "].Requirements";
+    } else if (learnType == ABILITY_LEARN_TYPE__ABILITY_COOLDOWN) {
+        fieldPath = "CmdButtonArray[" + IntToString(0) + "].Requirements";
+    } else if (learnType == ABILITY_LEARN_TYPE__EFFECT_AMOUNT) {
+        fieldPath = "CmdButtonArray[" + IntToString(0) + "].Requirements";
+    } else if (learnType == ABILITY_LEARN_TYPE__EFFECT_DURATION) {
+        fieldPath = "CmdButtonArray[" + IntToString(0) + "].Requirements";
+    }
+
+    if (fieldPath == "") {
+        return;
+    }
+
+    CatalogFieldValueModify(c_gameCatalogAbil, dataId, "", player, FixedToString(value, c_fixedPrecisionAny), c_upgradeOperationAdd);
+}
+
+
+void testCode() {
+    //
+}

@@ -1,0 +1,15 @@
+
+struct SaleStatsPreset {
+    int cost;
+    int max;
+    fixed value;
+};
+
+struct FirstStatsPreset {
+    fixed value;
+};
+
+struct Preset {
+    SaleStatsPreset[STATS_MAX] saleStats;
+    FirstStatsPreset[FIRST_STATS_MAX] firstStats;
+};

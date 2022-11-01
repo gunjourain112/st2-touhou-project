@@ -1,0 +1,6 @@
+
+struct MilitaryRank {
+    int id;
+    int exp;
+};
+

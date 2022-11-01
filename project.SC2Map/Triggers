@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TriggerData>
+    <Root>
+        <Item Type="Comment" Id="06D4706E"/>
+        <Item Type="Comment" Id="7B65CC73"/>
+        <Item Type="CustomScript" Id="E14339CA"/>
+        <Item Type="Comment" Id="B25D8D0A"/>
+        <Item Type="Comment" Id="4D3F8FFD"/>
+        <Item Type="FunctionDef" Id="C9E6FA8F"/>
+        <Item Type="Comment" Id="EEF5F018"/>
+        <Item Type="Comment" Id="2E854E66"/>
+        <Item Type="Trigger" Id="D365A40D"/>
+    </Root>
+    <Element Type="Comment" Id="06D4706E">
+        <Comment>
+            -------
+        </Comment>
+    </Element>
+    <Element Type="Comment" Id="7B65CC73">
+        <Comment>
+            include -----
+        </Comment>
+    </Element>
+    <Element Type="CustomScript" Id="E14339CA">
+        <ScriptCode>
+            include &quot;scripts/main.galaxy&quot;
+        </ScriptCode>
+    </Element>
+    <Element Type="Comment" Id="B25D8D0A">
+        <Comment>
+            -------
+        </Comment>
+    </Element>
+    <Element Type="Comment" Id="4D3F8FFD">
+        <Comment>
+            -------
+        </Comment>
+    </Element>
+    <Element Type="FunctionDef" Id="C9E6FA8F">
+        <FlagAction/>
+        <FlagNative/>
+        <Parameter Type="ParamDef" Id="C35A515B"/>
+    </Element>
+    <Element Type="ParamDef" Id="C35A515B">
+        <ParameterType>
+            <Type Value="string"/>
+        </ParameterType>
+        <Default Type="Param" Id="A95C53A5"/>
+    </Element>
+    <Element Type="Param" Id="A95C53A5">
+        <ValueType Type="string"/>
+    </Element>
+    <Element Type="Comment" Id="EEF5F018">
+        <Comment>
+            -------
+        </Comment>
+    </Element>
+    <Element Type="Comment" Id="2E854E66">
+        <Comment>
+            -------
+        </Comment>
+    </Element>
+    <Element Type="Trigger" Id="D365A40D">
+        <Variable Type="Variable" Id="3BB372AC"/>
+        <Event Type="FunctionCall" Id="7F2B70D0"/>
+        <Action Type="FunctionCall" Id="A1544825"/>
+        <Action Type="FunctionCall" Id="7525E607"/>
+        <Action Type="Comment" Id="D8FD385F"/>
+        <Action Type="FunctionCall" Id="89269C86"/>
+        <Action Type="Comment" Id="929EF230"/>
+        <Action Type="FunctionCall" Id="5E608C46"/>
+        <Action Type="Comment" Id="FE35973E"/>
+        <Action Type="Comment" Id="97906BCE"/>
+    </Element>
+    <Element Type="Variable" Id="3BB372AC">
+        <VariableType>
+            <Type Value="fixed"/>
+        </VariableType>
+        <Value Type="Param" Id="5767AE80"/>
+    </Element>
+    <Element Type="Param" Id="5767AE80">
+        <Value>0</Value>
+        <ValueType Type="fixed"/>
+    </Element>
+    <Element Type="FunctionCall" Id="7F2B70D0">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000120"/>
+    </Element>
+    <Element Type="FunctionCall" Id="A1544825">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="EEFB5A8F"/>
+        <Parameter Type="Param" Id="806CA518"/>
+    </Element>
+    <Element Type="Param" Id="806CA518">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="60713155"/>
+        <Preset Type="PresetValue" Library="Ntve" Id="D85EAE19"/>
+    </Element>
+    <Element Type="FunctionCall" Id="7525E607">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="86A15A1D"/>
+        <Parameter Type="Param" Id="50AFF627"/>
+    </Element>
+    <Element Type="Param" Id="50AFF627">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="53219290"/>
+        <Preset Type="PresetValue" Library="Ntve" Id="00000296"/>
+    </Element>
+    <Element Type="Comment" Id="D8FD385F">
+        <Comment>
+            -------
+        </Comment>
+    </Element>
+    <Element Type="FunctionCall" Id="89269C86">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="0366EE04"/>
+        <Parameter Type="Param" Id="4971E13D"/>
+        <Parameter Type="Param" Id="86AA9726"/>
+        <Parameter Type="Param" Id="0F2511B9"/>
+    </Element>
+    <Element Type="Param" Id="4971E13D">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="0D120C33"/>
+        <FunctionCall Type="FunctionCall" Id="C8FD0ABB"/>
+    </Element>
+    <Element Type="FunctionCall" Id="C8FD0ABB">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="00000192"/>
+    </Element>
+    <Element Type="Param" Id="86AA9726">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="A4C19F41"/>
+        <Preset Type="PresetValue" Library="Ntve" Id="875889C8"/>
+    </Element>
+    <Element Type="Param" Id="0F2511B9">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="78A54B52"/>
+        <FunctionCall Type="FunctionCall" Id="662B7756"/>
+    </Element>
+    <Element Type="FunctionCall" Id="662B7756">
+        <FunctionDef Type="FunctionDef" Library="Ntve" Id="5A89F099"/>
+        <Parameter Type="Param" Id="80AA1F64"/>
+        <Parameter Type="Param" Id="9C8DE992"/>
+    </Element>
+    <Element Type="Param" Id="80AA1F64">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="4DF6106C"/>
+        <ValueType Type="text"/>
+    </Element>
+    <Element Type="Param" Id="9C8DE992">
+        <ParameterDef Type="ParamDef" Library="Ntve" Id="4DF6106C"/>
+        <ValueType Type="text"/>
+    </Element>
+    <Element Type="Comment" Id="929EF230">
+        <Comment>
+            -------
+        </Comment>
+    </Element>
+    <Element Type="FunctionCall" Id="5E608C46">
+        <FunctionDef Type="FunctionDef" Id="C9E6FA8F"/>
+        <Parameter Type="Param" Id="4F764D46"/>
+    </Element>
+    <Element Type="Param" Id="4F764D46">
+        <ParameterDef Type="ParamDef" Id="C35A515B"/>
+        <Value>Script</Value>
+        <ValueType Type="string"/>
+    </Element>
+    <Element Type="Comment" Id="FE35973E">
+        <Comment>
+            -------
+        </Comment>
+    </Element>
+    <Element Type="Comment" Id="97906BCE">
+        <Comment>
+            -------
+        </Comment>
+    </Element>
+</TriggerData>

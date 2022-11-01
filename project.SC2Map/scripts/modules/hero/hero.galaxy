@@ -1,0 +1,16 @@
+include "scripts/modules/spec/spec.galaxy"
+include "scripts/modules/ability/ability.galaxy"
+
+struct Hero {
+    int id;
+    unit hero;
+    int level;
+    fixed exp;
+    Spec spec;
+    Ability[ABILITY_HOTKEY_MAX] abilities;
+};
+
+int getHeroIdFunc() {
+    //UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, StringToText("hell"));
+    return 9;
+}

@@ -1,0 +1,24 @@
+
+struct Spec {
+    fixed[STATS_MAX] base;
+    fixed[STATS_MAX] incr;
+    fixed[STATS_MAX] curr;
+};
+
+void initSpec(int player) {
+    int i;
+    structref<Spec> spec = players[player].hero.spec;
+
+    // 초기값
+    spec.base[STATS_INDEX__health] = 5.5;
+    // ...
+
+    // 증감값
+    spec.incr[STATS_INDEX__health] = 5.5 * 0.1;
+    // ...
+
+    // 현재값
+    for (i = 0; i < STATS_MAX; i = i + 1) {
+        spec.curr[i] = spec.base[i];
+    }
+}

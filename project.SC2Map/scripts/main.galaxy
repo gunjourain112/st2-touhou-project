@@ -1,0 +1,81 @@
+include "scripts/constants/enum.galaxy"
+include "scripts/constants/preset.galaxy"
+
+include "scripts/modules/kda/kda.galaxy"
+include "scripts/modules/player/player.galaxy"
+
+struct gs_playeUR {
+    int lv_handleKey;
+    int lv_name;
+    unit lv_unit;
+};
+
+gs_playeUR gv_playUr;
+
+typedef int[4] myinType;
+
+void testStructRef(structref<Hero> hero) {
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (StringToText("[structref] heroId: ") + IntToText(hero.id)));
+}
+
+void testArrayRef(arrayref<myinType> u) {
+    int i;
+    for (i = 0; i < 3; i = i + 1) {
+        UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (StringToText("[for] ") + IntToText(u[i])));
+    }
+}
+
+void testFuncRef(int n);
+
+void voidTestMyF(int n) {
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, StringToText("[funcref]"));
+}
+
+void testFunc(funcref<testFuncRef> myFunc){
+    myFunc(5);
+}
+
+void moduleInit() {
+    int i;
+    int j;
+
+    for (i = 0; i < PLAYERS_MAX; i = i + 1) {
+        for (j = 0; j < ABILITY_HOTKEY_MAX; j = j + 1) {
+            abilityInit(players[i].hero.abilities[j]);
+        }
+    }
+}
+
+void action(string params) {
+    int[4] myin;
+    myin[0] = 11;
+    myin[1] = 25;
+    myin[2] = 30;
+    myin[3] = 45;
+
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, StringToText("Action!!" + params));
+    gv_playUr.lv_name = 6;
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (StringExternal("Action End!")));
+
+    players[0].handleKey = "hello";
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, StringToText(players[0].handleKey));
+
+    players[0].hero.id = 5;
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, IntToText(players[0].hero.id));
+
+    players[0].hero.abilities[0].hotkey = 1;
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, IntToText(players[0].hero.abilities[0].hotkey));
+
+    //UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, IntToText(getHeroIdFunc()));
+
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (StringToText("PLAYERS_MAX: ") + IntToText(PLAYERS_MAX)));
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (StringToText("ABILITY_HOTKEY_MAX: ") + IntToText(ABILITY_HOTKEY_MAX)));
+    UIDisplayMessage(PlayerGroupActive(), c_messageAreaSubtitle, (StringToText("ABILITY_TIER__1tier: ") + IntToText(ABILITY_TIER__1tier)));
+
+    testStructRef(players[0].hero);
+    testArrayRef(myin);
+    testFunc(voidTestMyF);
+
+    //startn();
+}
+

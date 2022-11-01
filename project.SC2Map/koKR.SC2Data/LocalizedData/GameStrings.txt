@@ -1,0 +1,11 @@
+﻿DocInfo/DescLong=MyTouhouGalaxyMan
+DocInfo/DescShort=5
+DocInfo/Name=MyTouhouGalaxyMan
+MapInfo/Player00/Name=중립
+MapInfo/Player01/Name=플레이어 1
+MapInfo/Player02/Name=적대
+Param/Value/0F2511B9=init
+Param/Value/80AA1F64=init
+Param/Value/9C8DE992=!!
+Variant001/ModeDesc=사용자가 모든 설정을 변경할 수 있습니다.
+Variant001/ModeName=사용자 지정

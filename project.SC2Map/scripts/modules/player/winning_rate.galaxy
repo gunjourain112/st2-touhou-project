@@ -1,0 +1,7 @@
+
+struct WinningRate {
+    int win;
+    int lose;
+    int deserted;
+};
+

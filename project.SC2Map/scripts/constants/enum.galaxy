@@ -1,0 +1,15 @@
+
+const int PLAYERS_MAX = 10;
+const int CHARACTER_MAX = 100;
+const int TEAMS_MAX = 2;
+const int MATCH_TYPE_MAX = 8;
+const int MATCH_ROUND_MAX = 21;
+const int ABILITY_HOTKEY_MAX = 5;
+const int ABILITY_CUMULATIVE_MAX = 5;
+const int STATS_MAX = 14;
+const int FIRST_STATS_MAX = 6;
+
+const int ABILITY_LEARN_ARRAY_MAX = 8;
+const int ABILITY_STATS_ARRAY_MAX = 8;
+
+const int MOD_SELECTION_DIALOG_BOX_MAX = 2;

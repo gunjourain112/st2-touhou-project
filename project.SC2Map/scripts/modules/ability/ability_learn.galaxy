@@ -1,0 +1,147 @@
+
+
+struct AbilityLearn {
+    string dataId;
+    int tab;
+    int field;
+    fixed base;
+    fixed incr;
+    string btnDataId;
+    text tooltip;
+};
+
+
+
+void initAbilityLearn(int player, int hotkey, int learnStatsType) {
+    int i;
+    int abilityArrayIndex = 0;
+    string dataId = "";
+    int tab = 0;
+    int field = 0;
+    int detail = 0;
+    fixed base = 0.0;
+    fixed incr = 0.0;
+    string btnDataId = "";
+    structref<Ability> ability = players[player].hero.abilities[hotkey];
+
+    bool openParenthesisFlag = false;
+    bool lockFieldFlag = false;
+    bool lockValueFlag = false;
+    string lockFieldString = "";
+    string data = "";
+    string findString = "";
+    string findChar = "";
+
+    for (i = 0; i < StringLength(data); i = i + 1) {
+        findChar = StringSub(data, i, i + 1);
+
+        // 필드, 값 분류
+        if (lockFieldFlag == true || lockValueFlag == true) {
+            findString = findString + findChar;
+            continue;
+        }
+
+        if (findChar == " " || findChar == "\n") {
+            continue;
+        }
+        if (findChar == "{") {
+            openParenthesisFlag = true;
+            continue;
+        }
+        if (findChar == "}") {
+            if (learnStatsType == 0) {
+                ability.abilityLearn[abilityArrayIndex].dataId = dataId;
+                ability.abilityLearn[abilityArrayIndex].tab = tab;
+                ability.abilityLearn[abilityArrayIndex].field = field;
+                ability.abilityLearn[abilityArrayIndex].incr = incr;
+                ability.abilityLearn[abilityArrayIndex].btnDataId = btnDataId;
+            } else if (learnStatsType == 1) {
+                ability.abilityStats[abilityArrayIndex].dataId = dataId;
+                ability.abilityStats[abilityArrayIndex].tab = tab;
+                ability.abilityStats[abilityArrayIndex].field = field;
+                ability.abilityStats[abilityArrayIndex].detail = detail;
+                ability.abilityStats[abilityArrayIndex].base = base;
+                ability.abilityStats[abilityArrayIndex].incr = incr;
+            }
+            openParenthesisFlag = false;
+            lockFieldFlag = false;
+            lockValueFlag = false;
+            lockFieldString = "";
+            findString = "";
+            findChar = "";
+            continue;
+        }
+        if (findChar == "]") {
+
+            return;
+        }
+
+        if (findChar == "\"") {
+            if (lockFieldFlag == false && lockFieldString == "" && lockValueFlag == false) {
+                lockFieldFlag = true;
+            } else if (lockFieldFlag == true && lockValueFlag == false) {
+                lockFieldString = findString;
+                lockFieldFlag = false;
+                findString = "";
+            } else if (lockFieldFlag == false && lockFieldString != "" && lockValueFlag == false) {
+                lockValueFlag = true;
+            } else if (lockFieldFlag == false && lockValueFlag == true) {
+                if (lockFieldString == "dataId") {
+                    dataId = findString;
+                } else if (lockFieldString == "tab") {
+                    tab = StringToInt(findString);
+                } else if (lockFieldString == "field") {
+                    field = StringToInt(findString);
+                } else if (lockFieldString == "btnDataId") {
+                    btnDataId = findString;
+                } else if (lockFieldString == "detail") {
+                    detail = StringToInt(findString);
+                } else if (lockFieldString == "base") {
+                    base = StringToFixed(findString);
+                } else if (lockFieldString == "incr") {
+                    incr = StringToFixed(findString);
+                }
+                lockFieldString = "";
+                findString = "";
+                lockFieldFlag = false;
+                lockValueFlag = false;
+            }
+            continue;
+        }
+    }
+
+
+    for (i = 0; i < ABILITY_LEARN_ARRAY_MAX; i = i + 1) {
+        ability.abilityLearn[i].base = 5;
+    }
+
+}
+
+void parseAbilityInfo() {
+
+}
+
+`01`1`1Q Stimpack
+
+`01`1`1Q_learn
+[
+  {
+    "dataId": "dbhy01_1_1q",
+    "tab": "0",
+    "field": "0",
+    "incr": "0.5",
+    "btnDataId": "",
+  }
+],
+
+`01`1`1Q_stats
+[
+  {
+    "dataId": "dbhy01_1_1q",
+    "tab": "0",
+    "field": "0",
+    "detail": "0",
+    "base": "80",
+    "incr": "0"
+  }
+]

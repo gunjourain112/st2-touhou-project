@@ -1,0 +1,87 @@
+
+const int GAME_MOD_STEP__01_GAME_TYPE = 0;
+const int GAME_MOD_STEP__02_TEAM_TYPE = 1;
+const int GAME_MOD_STEP__03_TEAM_CHOICE = 2;
+const int GAME_MOD_STEP__04_GOAL_ROUND = 3;
+const int GAME_MOD_STEP__05_HERO_PICK = 4;
+const int GAME_MOD_STEP__06_HERO_PICK_BAN = 5;
+const int GAME_MOD_STEP__07_SWAP = 6;
+const int GAME_MOD_STEP__08_SUB_STATS_CHOICE = 7;
+const int GAME_MOD_STEP__09_PICK_OPEN_TIME = 8;
+const int GAME_MOD_STEP__10_SELECTION_END = 9;
+
+const int GAME_TYPE__NORMAL = 0;
+const int GAME_TYPE__SECRET = 1;
+const int GAME_TYPE__RANK_SOLO = 2;
+const int GAME_TYPE__RANK_TEAM = 3;
+const int GAME_TYPE__CLAN_FRIENDLY = 4;
+const int GAME_TYPE__CLAN_FORMALLY = 5;
+const int GAME_TYPE__CHAMPIONSHIP_HOME = 6;
+const int GAME_TYPE__CHAMPIONSHIP_WORLD = 7;
+
+const int TEAM_TYPE__RANDOM = 0;
+const int TEAM_TYPE__CHOICE = 1;
+
+const int GOAL_ROUND__03 = 3;
+const int GOAL_ROUND__06 = 6;
+const int GOAL_ROUND__09 = 9;
+const int GOAL_ROUND__11 = 11;
+
+const int STATS_INDEX__health = 0;
+const int STATS_INDEX__mana = 1;
+const int STATS_INDEX__attackDamage = 2;
+const int STATS_INDEX__magicDamage = 3;
+const int STATS_INDEX__armor = 4;
+const int STATS_INDEX__magicArmor = 5;
+const int STATS_INDEX__attackSpeed = 6;
+const int STATS_INDEX__moveSpeed = 7;
+const int STATS_INDEX__critical = 8;
+const int STATS_INDEX__cooldown = 9;
+const int STATS_INDEX_a_rmorPenetrate = 10;
+const int STATS_INDEX__magicArmorPenetrate = 11;
+const int STATS_INDEX__weaponRange = 12;
+const int STATS_INDEX__hpStatMax = 13;
+const int STATS_INDEX__hpLevelupAddNum = 14;
+
+const int ABILITY_TIER__z = 0;
+const int ABILITY_TIER__1tier = 1;
+const int ABILITY_TIER__2tier = 2;
+const int ABILITY_TIER__3tier = 3;
+const int ABILITY_TIER__4tier = 4;
+
+const int ABILITY_LINE__1st = 0;
+const int ABILITY_LINE__2nd = 1;
+const int ABILITY_LINE__3rd = 2;
+const int ABILITY_LINE__4th = 3;
+const int ABILITY_LINE__5th = 4;
+
+const int ABILITY_HOTKEY__T = 0;
+const int ABILITY_HOTKEY__Q = 1;
+const int ABILITY_HOTKEY__W = 2;
+const int ABILITY_HOTKEY__E = 3;
+const int ABILITY_HOTKEY__R = 4;
+
+const int LANGUA__kr = 0;
+const int LANGUA__en = 1;
+const int LANGUA__cn = 2;
+
+const int TEAM__1pinkTeam = 0;
+const int TEAM__2blueTeam = 1;
+
+
+
+
+const int ABILITY_UPGRADE_TYPE__ABILITY_MANA = 0;
+const int ABILITY_UPGRADE_TYPE__ABILITY_COOLDOWN = 1;
+const int ABILITY_UPGRADE_TYPE__BEHAVIOR_DURATION = 2;
+const int ABILITY_UPGRADE_TYPE__EFFECT_DURATION = 3;
+const int ABILITY_UPGRADE_TYPE__EFFECT_AMOUNT = 4;
+
+const int ABILITY_UPGRADE_DETAIL_TYPE__ALL = 0;
+const int ABILITY_UPGRADE_DETAIL_TYPE__BONUS = 1;
+const int ABILITY_UPGRADE_DETAIL_TYPE__STATS = 2;
+
+
+void start() {
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringToText("hello~~~"));
+}

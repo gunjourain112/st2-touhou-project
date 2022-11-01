@@ -1,0 +1,290 @@
+//==================================================================================================
+// 
+// Generated Map Script
+// 
+// Name:   ?????????????????? II ??????
+// 
+//==================================================================================================
+include "TriggerLibs/NativeLib"
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+void InitLibs () {
+    libNtve_InitLib();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Constants
+//--------------------------------------------------------------------------------------------------
+const int gv_pLAYERS_MAX = 10;
+const int gv_aBILITY_MAX = 5;
+const int gv_sTATS_MAX = 14;
+
+//--------------------------------------------------------------------------------------------------
+// Global Structures
+//--------------------------------------------------------------------------------------------------
+struct gs_UPGRADE_TYPE {
+    int lv_abilityMana;
+    int lv_abilityCooldown;
+    int lv_effectDuration;
+    int lv_effectAmount;
+    int lv_behaviorDuration;
+};
+
+struct gs_Record {
+    int lv_upgradeType;
+};
+
+struct gs_Ability {
+    string lv_ability;
+    int lv_hotkey;
+    int lv_line;
+    int lv_tier;
+    int lv_level;
+    fixed[gv_sTATS_MAX + 1] lv_baseStats;
+    fixed[gv_sTATS_MAX + 1] lv_currStats;
+};
+
+struct gs_Hero {
+    int lv_id;
+    unit lv_unit;
+    int lv_level;
+    int lv_exp;
+    fixed[gv_sTATS_MAX + 1] lv_baseStats;
+    fixed[gv_sTATS_MAX + 1] lv_currStats;
+    gs_Ability[gv_aBILITY_MAX + 1] lv_abilities;
+};
+
+struct gs_Player {
+    gs_Hero lv_hero;
+};
+
+//--------------------------------------------------------------------------------------------------
+// Global Preset Declarations
+//--------------------------------------------------------------------------------------------------
+const int ge_STATS_INDEX__health = 0;
+const int ge_STATS_INDEX__mana = 1;
+const int ge_STATS_INDEX__attackDamage = 2;
+const int ge_STATS_INDEX__magicDamage = 3;
+const int ge_STATS_INDEX__armor = 4;
+const int ge_STATS_INDEX__magicArmor = 5;
+const int ge_STATS_INDEX__attackSpeed = 6;
+const int ge_STATS_INDEX__moveSpeed = 7;
+const int ge_STATS_INDEX__critical = 8;
+const int ge_STATS_INDEX__cooldown = 9;
+const int ge_STATS_INDEX__armorPenetrate = 10;
+const int ge_STATS_INDEX__magicArmorPenetrate = 11;
+const int ge_STATS_INDEX__weaponRange = 12;
+const int ge_STATS_INDEX__hpStatMax = 13;
+const int ge_STATS_INDEX__hpLevelupAddNum = 14;
+const int ge_ABILITY_TIER__z = 0;
+const int ge_ABILITY_TIER__1tier = 1;
+const int ge_ABILITY_TIER__2tier = 2;
+const int ge_ABILITY_TIER__3tier = 3;
+const int ge_ABILITY_TIER__4tier = 4;
+const int ge_ABILITY_LINE__1st = 0;
+const int ge_ABILITY_LINE__2nd = 1;
+const int ge_ABILITY_LINE__3rd = 2;
+const int ge_ABILITY_LINE__4th = 3;
+const int ge_ABILITY_LINE__5th = 4;
+const int ge_ABILITY_HOTKEY__T = 0;
+const int ge_ABILITY_HOTKEY__Q = 1;
+const int ge_ABILITY_HOTKEY__W = 2;
+const int ge_ABILITY_HOTKEY__E = 3;
+const int ge_ABILITY_HOTKEY__R = 4;
+const int ge_LANGUAGE__kr = 0;
+const int ge_LANGUAGE__en = 1;
+const int ge_LANGUAGE__cn = 2;
+const int ge_TEAM__1pinkTeam = 0;
+const int ge_TEAM__2blueTeam = 1;
+
+//--------------------------------------------------------------------------------------------------
+// Global Variables
+//--------------------------------------------------------------------------------------------------
+int gv_lANGUAGE;
+fixed gv_dEFAULT_DELAY;
+gs_UPGRADE_TYPE gv_uPGRADE_TYPE;
+gs_Record gv_record;
+gs_Ability gv_ability;
+gs_Hero gv_hero;
+gs_Player[gv_pLAYERS_MAX + 1] gv_players;
+
+void InitGlobals () {
+    gv_lANGUAGE = ge_LANGUAGE__kr;
+    gv_dEFAULT_DELAY = 1.4;
+    gv_uPGRADE_TYPE.lv_abilityCooldown = 1;
+    gv_uPGRADE_TYPE.lv_effectDuration = 10;
+    gv_uPGRADE_TYPE.lv_effectAmount = 11;
+    gv_uPGRADE_TYPE.lv_behaviorDuration = 20;
+}
+
+//--------------------------------------------------------------------------------------------------
+// Global Function Declarations
+//--------------------------------------------------------------------------------------------------
+void gf_InitHeroAbilityInfo (int lp_player, int lp_abilityHotkey, int lp_abilityLine);
+string gf_GetHeroAbility (int lp_player, int lp_abilityHotkey, int lp_abilityLine);
+void gf_InitHeroSpec (int lp_player);
+
+//--------------------------------------------------------------------------------------------------
+// Global Presets
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+// Global Functions
+//--------------------------------------------------------------------------------------------------
+void gf_InitHeroAbilityInfo (int lp_player, int lp_abilityHotkey, int lp_abilityLine) {
+    // Variable Declarations
+    int lv_tier;
+    string lv_ability;
+    string lv_abilityId;
+    string lv_base;
+    string lv_heroNumber;
+    string lv_requirementsString;
+    string lv_requirements;
+
+    // Automatic Variable Declarations
+    string autoE4E383A0_val;
+
+    // Variable Initialization
+    lv_ability = "";
+    lv_abilityId = "";
+    lv_base = "dbnu";
+    lv_heroNumber = IntToString(gv_players[0].lv_hero.lv_id);
+    lv_requirementsString = "";
+
+    // Implementation
+    gv_players[lp_player].lv_hero.lv_abilities[(lp_abilityHotkey)].lv_ability = gf_GetHeroAbility(lp_player, lp_abilityHotkey, lp_abilityLine);
+    gv_players[lp_player].lv_hero.lv_abilities[(lp_abilityHotkey)].lv_hotkey = (lp_abilityHotkey);
+    gv_players[lp_player].lv_hero.lv_abilities[(lp_abilityHotkey)].lv_line = (lp_abilityLine);
+    lv_requirementsString = CatalogFieldValueGet(c_gameCatalogAbil, gv_players[lp_player].lv_hero.lv_abilities[(lp_abilityHotkey)].lv_ability, "CmdButtonArray[" + IntToString(0) + "].Requirements", lp_player);
+    autoE4E383A0_val = lv_requirements;
+    if (autoE4E383A0_val == "UsePersonalCloaking") {
+        lv_tier = (ge_ABILITY_TIER__1tier);
+    }
+    else if (autoE4E383A0_val == "LearnPersonnelCloaking") {
+        lv_tier = (ge_ABILITY_TIER__2tier);
+    }
+    else if (autoE4E383A0_val == "LearnPersonnelCloaking") {
+        lv_tier = (ge_ABILITY_TIER__3tier);
+    }
+    else if (autoE4E383A0_val == "LearnPersonnelCloaking") {
+        lv_tier = (ge_ABILITY_TIER__4tier);
+    }
+    else {
+    }
+    gv_players[lp_player].lv_hero.lv_abilities[(lp_abilityHotkey)].lv_tier = lv_tier;
+}
+
+string gf_GetHeroAbility (int lp_player, int lp_abilityHotkey, int lp_abilityLine) {
+    // Variable Declarations
+    string lv_ability;
+    string lv_abilityId;
+    string lv_base;
+    string lv_heroNumber;
+    string lv_index;
+
+    // Automatic Variable Declarations
+    int auto826E1D81_val;
+
+    // Variable Initialization
+    lv_ability = "";
+    lv_abilityId = "";
+    lv_base = "dbnu";
+    lv_heroNumber = IntToString(gv_players[0].lv_hero.lv_id);
+    lv_index = "";
+
+    // Implementation
+    if ((StringLength(lv_heroNumber) == 1)) {
+        lv_heroNumber = ("0" + lv_heroNumber);
+    }
+
+    auto826E1D81_val = lp_abilityHotkey;
+    if (auto826E1D81_val == ge_ABILITY_HOTKEY__T) {
+        lv_index = (IntToString((ge_ABILITY_HOTKEY__T)) + "t");
+    }
+    else if (auto826E1D81_val == ge_ABILITY_HOTKEY__Q) {
+        lv_index = (IntToString((ge_ABILITY_HOTKEY__Q)) + "q");
+    }
+    else if (auto826E1D81_val == ge_ABILITY_HOTKEY__W) {
+        lv_index = (IntToString((ge_ABILITY_HOTKEY__W)) + "w");
+    }
+    else if (auto826E1D81_val == ge_ABILITY_HOTKEY__E) {
+        lv_index = (IntToString((ge_ABILITY_HOTKEY__E)) + "e");
+    }
+    else if (auto826E1D81_val == ge_ABILITY_HOTKEY__R) {
+        lv_index = (IntToString((ge_ABILITY_HOTKEY__R)) + "r");
+    }
+    else {
+    }
+    lv_abilityId = (lv_base + lv_heroNumber + "_" + IntToString(lp_abilityLine) + "_" + lv_index);
+    lv_ability = (lv_abilityId);
+    if ((CatalogFieldValueGet(c_gameCatalogAbil, lv_ability, "Name", lp_player) == "")) {
+        return "";
+    }
+
+    return lv_ability;
+}
+
+void gf_InitHeroSpec (int lp_player) {
+    // Variable Declarations
+    string lv_ab;
+    string lv_str;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_str = "";
+
+    // Implementation
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (StringExternal("Param/Value/08A5E9DB") + StringToText(("dbnu01_1_1q"))));
+    lv_ab = ("dbnu01_1_4r");
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (StringExternal("Param/Value/542B8611") + StringToText((lv_ab))));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, (StringExternal("Param/Value/530DE53C") + StringToText(CatalogFieldValueGet(c_gameCatalogAbil, lv_ab, "Name", 1))));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/D8E1BFEB"));
+    if ((lv_ab == null)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/555D9D90"));
+    }
+
+    if ((lv_ab == "")) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/695485EE"));
+    }
+
+    if ((lv_ab == null)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/3321305B"));
+    }
+
+    if ((lv_ab == null)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/5434F55E"));
+    }
+
+    if ((lv_ab == null)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/BA277EE3"));
+    }
+
+    if ((lv_ab == null)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/985CF82F"));
+    }
+
+    if ((lv_ab == null)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/CC7291AB"));
+    }
+
+    if ((lv_ab == "")) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/F49DFE7E"));
+    }
+
+    if ((lv_ab == null)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/C390F03B"));
+    }
+
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, StringExternal("Param/Value/D872745E"));
+    lv_str = CatalogFieldValueGet(c_gameCatalogAbil, "dbnu01_1_1q", "CmdButtonArray[" + IntToString(0) + "].Requirements", lp_player);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Map Initialization
+//--------------------------------------------------------------------------------------------------
+void InitMap () {
+    InitLibs();
+    InitGlobals();
+}

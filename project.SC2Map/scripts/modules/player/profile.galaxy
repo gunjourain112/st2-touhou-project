@@ -1,0 +1,9 @@
+include "scripts/modules/player/winning_rate.galaxy"
+include "scripts/modules/player/kda.galaxy"
+include "scripts/modules/player/military_rank.galaxy"
+
+struct Profile {
+    WinningRate[MATCH_TYPE_MAX] winningRate;
+    KDA[MATCH_TYPE_MAX] kda;
+    MilitaryRank militaryRank;
+};
